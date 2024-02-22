@@ -3,3 +3,4 @@ public enum Status {
     WRONGPOS,
     CORRECT
 }
+
