@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Word {
     private final Character[] chars;
     private final Status[] status;
-    private ConsoleColor[] color;
+    private final ConsoleColor[] color;
     public boolean gameOver;
 
     public Word(Character[] word) {

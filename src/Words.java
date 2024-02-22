@@ -17,7 +17,7 @@ public class Words {
         Random rand = new Random();
         List<String> words = wordsByLength.get(length);
         String word = words.get(rand.nextInt(words.size()));
-        wordChar = parseWord(word);
+        wordChar = parseWord(word.toLowerCase());
     }
 
     private Character[] parseWord(String word) {

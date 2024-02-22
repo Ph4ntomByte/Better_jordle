@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -15,10 +16,10 @@ public class Main {
         while (true) {
             System.out.print("Guess: ");
             var res = scan.next();
-            if (!word.compare(res)) {
+            if (!word.compare(res.toLowerCase())) {
                 continue;
             }
-            word.printStatus(res);
+            word.printStatus(res.toLowerCase());
             if (word.isGameOver()) {
                 promptNewGame(scan, words);
                 break;
