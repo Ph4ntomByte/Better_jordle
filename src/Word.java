@@ -5,19 +5,24 @@ import java.util.HashMap;
 public class Word {
     private final Character[] chars;
     private final Status[] status;
-//    private final ConsoleColor[] color;
+    private ConsoleColor[] color;
     public boolean gameOver;
 
-    public Word(Character[] word, ConsoleColor[] color) {
+    public Word(Character[] word) {
         this.chars = word;
         this.status = new Status[word.length];
-//        this.color = color;
+        this.color = new ConsoleColor[word.length];
         this.resetStatus();
     }
+
+
 
     private void resetStatus() {
         Arrays.fill(this.status, Status.MISSING);
     }
+//    private void ResetColor() {
+//        Arrays.fill(this.color, ConsoleColor.RESET);
+//    }
 
     public Status[] getStatus() {
         return this.status;
@@ -25,21 +30,24 @@ public class Word {
     public boolean IsGameOver(){
         return gameOver;
     }
-    public void printStatus() {
+    public void printStatus(String word) {
         int count = 0;
-        for (int i = 0; i < chars.length; i++)
-        {
-            if (status[i] == Status.CORRECT){
+        for (int i = 0; i < chars.length; i++) {
+            String temp = String.valueOf(word.toString().charAt(i));
+            System.out.print(color[i] + temp + "\u001B[0m");
+            if (status[i] == Status.CORRECT) {
                 count++;
             }
         }
-        if (count == chars.length){
-            System.out.println("You guessed it");
+        if (count == chars.length) {
+            System.out.println("\nYou guessed it");
             gameOver = true;
         } else {
-            System.out.println(Arrays.toString(status));
+            System.out.println();
+//            System.out.println(Arrays.toString(status));
         }
     }
+
 
     public boolean compare(String guess) {
         if (gameOver) {
@@ -58,14 +66,18 @@ public class Word {
             char temp = guess.charAt(i);
             if (temp == chars[i]) {
                 status[i] = Status.CORRECT;
+                color[i] = ConsoleColor.GREEN;
                 charCount.put(temp, charCount.get(temp) - 1);
             } else if (charCount.getOrDefault(temp, 0) > 0) {
                 status[i] = Status.WRONGPOS;
+                color[i] = ConsoleColor.YELLOW;
                 charCount.put(temp, charCount.get(temp) - 1);
             } else {
                 status[i] = Status.MISSING;
+                color[i] = ConsoleColor.RED;
             }
         }
+
         return true;
     }
 

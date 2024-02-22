@@ -18,7 +18,7 @@ public class Main {
             if (!word.compare(res)) {
                 continue;
             }
-            word.printStatus();
+            word.printStatus(res);
             if (word.isGameOver()) {
                 promptNewGame(scan, words);
                 break;
