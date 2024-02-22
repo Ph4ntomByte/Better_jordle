@@ -20,9 +20,6 @@ public class Word {
     private void resetStatus() {
         Arrays.fill(this.status, Status.MISSING);
     }
-//    private void ResetColor() {
-//        Arrays.fill(this.color, ConsoleColor.RESET);
-//    }
 
     public Status[] getStatus() {
         return this.status;
@@ -40,11 +37,10 @@ public class Word {
             }
         }
         if (count == chars.length) {
-            System.out.println("\nYou guessed it");
+            System.out.println("\nYou guessed it \uD83C\uDF89");
             gameOver = true;
         } else {
             System.out.println();
-//            System.out.println(Arrays.toString(status));
         }
     }
 
@@ -54,7 +50,6 @@ public class Word {
             return true;
         }
         if (guess.length() != chars.length) {
-            System.out.println("Word should be of length " + chars.length);
             return false;
         }
         this.resetStatus();

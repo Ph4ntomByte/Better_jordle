@@ -13,9 +13,15 @@ public class Main {
         var word = new Word(words.wordChar);
         var scan = new Scanner(System.in);
         System.out.println(Arrays.toString(words.wordChar));
-        while (true) {
-            System.out.print("Guess: ");
+        for (int i = 6; i > 0; i--) {
+            if(i == 1){System.out.println("You have " + i + " try");}
+            else {System.out.println("You have " + i + " tries");}
+            System.out.print("Guess the word: ");
             var res = scan.next();
+            if (res.length() != 5) {
+                System.out.println("Word should be of length 5");
+                i++;
+            }
             if (!word.compare(res.toLowerCase())) {
                 continue;
             }
@@ -24,12 +30,17 @@ public class Main {
                 promptNewGame(scan, words);
                 break;
             }
+
+        }
+        if (!word.isGameOver()) {
+            System.out.println("You lost! \uD83D\uDE22");
+            promptNewGame(scan, words);
         }
     }
 
 
     public static void promptNewGame(Scanner scanner, Words words) {
-        System.out.println("Do you want to start again? (yes/no)");
+        System.out.println("Do you want to start again?(yes/no)");
         String response = scanner.next();
         if (response.equalsIgnoreCase("yes")) {
             words.setWord(5);
