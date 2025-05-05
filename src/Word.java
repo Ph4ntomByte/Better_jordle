@@ -20,9 +20,6 @@ public class Word {
     private void resetStatus() {
         Arrays.fill(this.status, Status.MISSING);
     }
-//    private void ResetColor() {
-//        Arrays.fill(this.color, ConsoleColor.RESET);
-//    }
 
     public Status[] getStatus() {
         return this.status;
@@ -44,7 +41,6 @@ public class Word {
             gameOver = true;
         } else {
             System.out.println();
-//            System.out.println(Arrays.toString(status));
         }
     }
 
